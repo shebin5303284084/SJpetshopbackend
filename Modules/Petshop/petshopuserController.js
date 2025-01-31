@@ -32,8 +32,8 @@ const petshopRegister = (req, res) => {
 
 };
  
-let findshopregister=((req,res)=>{
-    petshopSchema.find({status:false})
+const findshopregister=((req,res)=>{
+    petshopSchema.find({status:"pending"})
     .then((result)=>{
         res.json({
             msg:"accept user",
@@ -46,10 +46,46 @@ let findshopregister=((req,res)=>{
         })
 
     })
-
 })
+
+
+const acceptshopReq=((req,res)=>{
+    petshopSchema.findByIdAndUpdate({_id:req.params.id},{status:"accept"})
+    .then((result)=>{
+        res.json({
+            msg:"accept user",
+            data:result
+        })
+    })
+    .catch((error)=>{
+        res.json({
+            err:"error"
+        })
+
+    })
+})
+
+const rejectshopReq=((req,res)=>{
+    petshopSchema.findByIdAndUpdate({_id:req.params.id},{status:"reject"})
+    .then((result)=>{
+        res.json({
+            msg:"accept user",
+            data:result
+        })
+    })
+    .catch((error)=>{
+        res.json({
+            err:"error"
+        })
+
+    })
+})
+
+
 
 module.exports = {
     petshopRegister,
-    findshopregister
+    findshopregister,
+    acceptshopReq,
+    rejectshopReq
 };
