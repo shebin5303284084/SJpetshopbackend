@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // Use the router
 app.use("/", Router);
 
-// Start the server
-app.listen(2024, function() {
-    console.log("The port is running at 2024");
-});
+
+app.listen(3000, function() {
+    console.log("The port is running at 3000");
+})
