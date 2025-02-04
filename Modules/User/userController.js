@@ -43,7 +43,7 @@ const login = ((req, res) => {
     userSchema.findOne({ email: email })
         .then((result) => {
             console.log(result);
-            
+        
            if(password==result.password){
             res.json({
                 status:200,
