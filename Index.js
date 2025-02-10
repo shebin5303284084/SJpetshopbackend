@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Serve static files from the upload directory
-// app.use(express.static(`${__dirname}/upload`));
+app.use(express.static(`${__dirname}/upload`));
 
 // Use the router
 app.use("/", Router);
