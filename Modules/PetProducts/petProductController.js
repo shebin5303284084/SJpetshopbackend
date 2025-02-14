@@ -13,8 +13,10 @@ const upload=multer({storage:storage}).single("image")
 
 const addproduct =(req,res)=>{
     let product = new petProductSchema({
-        productname:req.body.productname,
-        productcategory:req.body.productcategory,
+        Productname:req.body.Productname,
+        // Productdetail:req.body.Productdetail,
+        Productcategory:req.body.Productcategory,
+        price:req.body.price,
         image: req.file
     })
     // console.log(req.body);
@@ -28,11 +30,34 @@ const addproduct =(req,res)=>{
         })
     })
     .catch((err)=>{
-        console.log(err);       
+        console.log(err);  
+        res.json({
+          err:err
+        })     
     })
 }
 
+ const findByCategory=(req,res)=>{
+  console.log(req.body);
+  
+  petProductSchema
+  .find({Productcategory:req.body.id})
+  .then((result)=>{
+    res.json({
+      msg:"successfully get",
+      data:result,
+    })
+  })
+  .catch((err)=>{
+    res.json({
+      err:err,
+    })    
+  })
+ }
+
+
 module.exports={
     upload,
-    addproduct
+    addproduct,
+    findByCategory
 }
