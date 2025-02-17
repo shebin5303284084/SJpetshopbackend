@@ -23,12 +23,20 @@ const addproduct =(req,res)=>{
     .save()
     .then((result)=>{
         res.json({
-            msg:"saved",
-            data:result
+            data:result,
+            status:200,
+            mag:"Product Added Succesfully"
+ 
         })
+        
     })
     .catch((err)=>{
-        console.log(err);       
+        console.log(err);   
+        res.json({
+          data:result,
+          status:500,
+          msg:"please fill the all the above inputs"
+        })    
     })
 }
 
