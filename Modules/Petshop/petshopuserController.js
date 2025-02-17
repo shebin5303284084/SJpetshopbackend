@@ -1,4 +1,4 @@
-const userSchema = require("../User/userSchema");
+
 const petshopSchema = require("./petshopSchema");
 
 const petshopRegister = (req, res) => {
