@@ -1,6 +1,6 @@
 const AddCartSchemas = require("./AddcartSchema");
 
-const AddCart=((res,req) => {
+const AddCart=((req,res) => {
 
   let Cart = new AddCartSchemas({
     userId:req.body.userId,
@@ -22,7 +22,7 @@ const AddCart=((res,req) => {
   })
 });
 
-const findCart=(res,req)=>{
+const findCart=(req,res)=>{
     AddCartSchemas
     .find({})
     .populate('userId productId')
