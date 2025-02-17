@@ -56,6 +56,7 @@ const addproduct =(req,res)=>{
  }
 
 
+
 module.exports={
     upload,
     addproduct,
