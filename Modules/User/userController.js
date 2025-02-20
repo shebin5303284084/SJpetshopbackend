@@ -47,7 +47,8 @@ const login = ((req, res) => {
            if(password==result.password){
             res.json({
                 status:200,
-                msg:"logged in success"
+                msg:"logged in success",
+                data:result
             })
            }
            else{
