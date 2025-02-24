@@ -9,68 +9,78 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const upload=multer({storage:storage}).single("image")
+const upload = multer({ storage: storage }).single("image");
 
-const addproduct =(req,res)=>{
-    let product = new petProductSchema({
-        Productname:req.body.Productname,
-        // Productdetail:req.body.Productdetail,
-        Productcategory:req.body.Productcategory,
-        price:req.body.price,
-        image: req.file
-    })
-    // console.log(req.body);
-    
-    product
+const addproduct = (req, res) => {
+  let product = new petProductSchema({
+    Productname: req.body.Productname,
+    // Productdetail:req.body.Productdetail,
+    Productcategory: req.body.Productcategory,
+    price: req.body.price,
+    image: req.file,
+  });
+  // console.log(req.body);
+
+  product
     .save()
-    .then((result)=>{
-        res.json({
-            data:result,
-            status:200,
-            mag:"Product Added Succesfully"
- 
-        })
-        
+    .then((result) => {
+      res.json({
+        data: result,
+        status: 200,
+        mag: "Product Added Succesfully",
+      });
     })
-    .catch((err)=>{
+    .catch((err) => {
+      console.log(err);
+      res.json({
+        data: result,
+        status: 500,
+        msg: "please fill the all the above inputs",
+      });
 
-        console.log(err);   
-        res.json({
-          data:result,
-          status:500,
-          msg:"please fill the all the above inputs"
-        })    
+      console.log(err);
+      res.json({
+        err: err,
+      });
+    });
+};
 
-        console.log(err);  
-        res.json({
-          err:err
-        })     
-
-    })
-}
-
- const findByCategory=(req,res)=>{
+const findByCategory = (req, res) => {
   console.log(req.body);
-  
+
   petProductSchema
-  .find({Productcategory:req.body.id})
-  .then((result)=>{
-    res.json({
-      msg:"successfully get",
-      data:result,
+    .find({ Productcategory: req.body.id })
+    .then((result) => {
+      res.json({
+        msg: "successfully get",
+        data: result,
+      });
     })
-  })
-  .catch((err)=>{
-    res.json({
-      err:err,
-    })    
-  })
- }
+    .catch((err) => {
+      res.json({
+        err: err,
+      });
+    });
+};
 
+const findById = (req, res) => {
+  console.log(req.body);
+  petProductSchema
+    .findOne({ _id: req.params.id })
+    .then((result) => {
+      res.json({
+        msg: "Id Found Successfully",
+        data: result,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
-
-module.exports={
-    upload,
-    addproduct,
-    findByCategory
-}
+module.exports = {
+  upload,
+  addproduct,
+  findByCategory,
+  findById,
+};

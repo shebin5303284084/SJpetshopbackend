@@ -20,6 +20,7 @@ Router.post("/petshoplogin", petuser.petlogin);
 //petproduct
 Router.post("/addproduct",petProduct.upload, petProduct.addproduct);
 Router.post("/viewdog", petProduct.findByCategory);
+Router.post("/findid/:id",petProduct.findById)
 
 //cart
 
