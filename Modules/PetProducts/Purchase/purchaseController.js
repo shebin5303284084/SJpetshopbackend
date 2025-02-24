@@ -31,10 +31,10 @@ const findPurchase = (req, res) => {
       data: result,
     });
   })
-  .catch((err)=>{
-    console.log(err);
-    
-  })
+    .catch((err) => {
+      console.log(err);
+
+    })
 };
 
 module.exports = {
