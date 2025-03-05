@@ -3,24 +3,24 @@ const userSchema = require("./userSchema");
 
 let userRegistration = ((req, res) => {
     console.log(req.body);
-    
+
     let user = new userSchema({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
-        city: req.body.city, 
+        city: req.body.city,
         dateofbirth: req.body.dateofbirth,
-      address: req.body.address,
-      pincode: req.body.pincode,
+        address: req.body.address,
+        pincode: req.body.pincode,
         contact: req.body.contact,
         gender: req.body.gender,
         password: req.body.password,
-        
+
     })
     user.save()
         .then((result) => {
             res.json({
-                status:200,
+                status: 200,
                 msg: "sucessfully registered",
                 data: result
             })
@@ -43,30 +43,30 @@ const login = ((req, res) => {
     userSchema.findOne({ email: email })
         .then((result) => {
             console.log(result);
-        
-           if(password==result.password){
-            res.json({
-                status:200,
-                msg:"logged in success",
-                data:result
-            })
-           }
-           else{
-            res.json({
-                status:400,
-                msg:"Incorrect Password"
-            })
-           }
+
+            if (password == result.password) {
+                res.json({
+                    status: 200,
+                    msg: "logged in success",
+                    data: result
+                })
+            }
+            else {
+                res.json({
+                    status: 400,
+                    msg: "Incorrect Password"
+                })
+            }
         })
         .catch((err) => {
             res.json({
-                status:400,
+                status: 400,
                 msg: "user not found"
             })
         })
 
-    })
- 
+})
+
 module.exports = {
     userRegistration,
     login
