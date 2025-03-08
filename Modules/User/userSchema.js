@@ -20,6 +20,11 @@ const userschema = new mongoose.Schema({
         required: true
     },
 
+    state:{
+        type:String,
+        required:true
+    },
+
 
     city: {
         type: String,
@@ -46,7 +51,7 @@ const userschema = new mongoose.Schema({
         type: String,
         required: true
     },
-// jigkrlg
+
 
 })
 module.exports = new mongoose.model("user", userschema)

@@ -11,6 +11,7 @@ const  purchaseProduct  = require("./Modules/PetProducts/Purchase/PurchaseContro
 // Defining routes
 Router.post("/petshopuserregisteration",user.userRegistration)
 Router.post("/login", user.login);
+Router.post("/findorder/:id",user.Order)
 Router.post("/petregister", petuser.petshopRegister);
 Router.post("/viewpetshoprequests", petuser.findshopregister);
 Router.post("/acceptshoprequest/:id", petuser.acceptshopReq);
@@ -27,8 +28,6 @@ Router.post("/findid/:id",petProduct.findById)
 Router.post("/savecart" , Cart.AddCart)
 Router.post("/viewcart/:id",Cart.findCart)
 Router.post("/deleteproduct",Cart.deleteCart)
-
-//purchase
 
 Router.post("/purchase",purchaseProduct.purchaseProduct)
 Router.post("/viewpurchase",purchaseProduct.findPurchase)
