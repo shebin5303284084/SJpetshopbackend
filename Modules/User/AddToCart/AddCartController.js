@@ -23,13 +23,16 @@ const AddCart = (req, res) => {
 };
 
 const findCart = (req, res) => {
-  AddCartSchemas.find({userId:req.params.id})
+  AddCartSchemas.find({ userId: req.params.id })
     .populate("userId productId")
     .then((result) => {
       res.json({
         msg: "Find Successfully",
         data: result,
       });
+    })
+    .catch((error) => {
+      console.log(error);
     });
 };
 
