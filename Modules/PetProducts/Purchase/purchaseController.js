@@ -4,7 +4,7 @@ const purchaseProduct = (req, res) => {
   console.log(req.body);
 
   const purchase = new purchaseschema({
-    finprice: req.body.price,
+    finprice: req.body.finprice,
     quantity: req.body.quantity,
     date: new Date(),
     userId: req.body.userId,
@@ -37,7 +37,22 @@ const findPurchase = (req, res) => {
   })
 };
 
+const find=(req,res)=>{
+  purchaseschema.find({ userId: req.params.id})
+  .populate("productId userId")
+  .then((result)=>{
+    res.json({
+      msg:"successfully",
+      data:result
+    })
+  })
+  .catch((err)=>{
+    console.log(err);  
+  })
+}
+
 module.exports = {
   purchaseProduct,
   findPurchase,
+  find,
 };

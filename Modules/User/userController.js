@@ -6,14 +6,15 @@ let userRegistration = (req, res) => {
   let user = new userSchema({
     firstname: req.body.firstname,
     lastname: req.body.lastname,
-    email: req.body.email,
     city: req.body.city,
+    state: req.body.state,
     dateofbirth: req.body.dateofbirth,
     address: req.body.address,
     pincode: req.body.pincode,
     contact: req.body.contact,
     gender: req.body.gender,
     password: req.body.password,
+    email:req.body.email
   });
   user
     .save()
@@ -63,26 +64,45 @@ const login = (req, res) => {
 };
 
 const Order = (req, res) => {
- userSchema
-      .findById({
-        _id: req.params.id,
+  userSchema
+    .findById({
+      _id: req.params.id,
+    })
+    .then((result) => {
+      res.json({
+        msg: "Get Users Details Sucessfully",
+        data: result,
+        status: 200,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const forgetPassword = (req, res) => {
+  userSchema
+    .findOne({ email: req.body.email })
+    .then((data) => {
+      if (!data) {
+        return res.json({
+          status: 404,
+          msg: "USER DOESNOT EXIST",
+        });
+      }
+      return res.status(200).json({
+        data,
+        msg:'success'
       })
-      .then((result) => {
-        res
-          .json({
-            msg: "Get Users Details Sucessfully",
-            data: result,
-            status: 200,
-          })
-        
-      })
-        .catch((error) => {
-            console.log(error);
-          });
-  };
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 module.exports = {
   userRegistration,
   login,
-  Order
+  Order,
+  forgetPassword
 };
