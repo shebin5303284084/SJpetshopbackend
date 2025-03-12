@@ -67,9 +67,82 @@ const login = ((req, res) => {
 
 })
 
+const view=((req,res)=>{
+    userSchema.findById(req.params.id)
+    .then((result)=>{
+        res.json({
+            msg:"data found sucessfully",
+           data:result
+        })
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.json({
+            msg:"unable to find a user"
+            
+        })
+    })
+})
+
+const updateprofile = (req, res) => {
+    userSchema.findByIdAndUpdate(
+        req.params.id, 
+        {  
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            email: req.body.email,
+            city: req.body.city,
+            contact: req.body.contact,
+            address: req.body.address
+        },
+       
+    )
+    .then((result) => {
+        if (result) {
+            res.json({
+                msg: "Updated successfully",
+                data: result,
+                status: 200
+            });
+        } else {
+            res.json({
+                msg: "No changes were made",
+                status: 400
+            });
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+        res.json({
+            msg: "Cannot update user",
+            error: err.message,
+            status: 500
+        });
+    });
+    
+};
+
+
+const getAllusers = (req, res) => {
+    userSchema
+        .find()
+        .then((result) => {
+            res.json({
+                msg: "user Found",
+                data: result
+            })
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
+
 module.exports = {
     userRegistration,
-    login
+    login,
+    view,
+    updateprofile,
+    getAllusers
 
 }
 
