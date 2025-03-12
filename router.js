@@ -11,8 +11,14 @@ const  purchaseProduct  = require("./Modules/PetProducts/Purchase/PurchaseContro
 // Defining routes
 Router.post("/petshopuserregisteration",user.userRegistration)
 Router.post("/login", user.login);
+
+Router.post("/view/:id",user.view)
+Router.post("/updateuser/:id",user.updateprofile)
+Router.post("/usersinfo", user.getAllusers);
+
 Router.post("/findorder/:id",user.Order)
 Router.post("/forgetpass",user.forgetPassword)
+
 Router.post("/petregister", petuser.petshopRegister);
 Router.post("/viewpetshoprequests", petuser.findshopregister);
 Router.post("/acceptshoprequest/:id", petuser.acceptshopReq);

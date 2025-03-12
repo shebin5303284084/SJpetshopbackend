@@ -78,9 +78,11 @@ const findById = (req, res) => {
     });
 };
 
+
 module.exports = {
   upload,
   addproduct,
   findByCategory,
   findById,
 };
+
