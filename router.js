@@ -15,9 +15,11 @@ Router.post("/login", user.login);
 Router.post("/view/:id",user.view)
 Router.post("/updateuser/:id",user.updateprofile)
 Router.post("/usersinfo", user.getAllusers);
+Router.post("/deleteuser",user.deleteUser)
 
 Router.post("/findorder/:id",user.Order)
 Router.post("/forgetpass",user.forgetPassword)
+Router.post("/changepassword",user.ChangePassword)
 
 Router.post("/petregister", petuser.petshopRegister);
 Router.post("/viewpetshoprequests", petuser.findshopregister);
@@ -29,6 +31,8 @@ Router.post("/petshoplogin", petuser.petlogin);
 Router.post("/addproduct",petProduct.upload, petProduct.addproduct);
 Router.post("/viewdog", petProduct.findByCategory);
 Router.post("/findid/:id",petProduct.findById)
+Router.post("/getallproducts",petProduct.viewAll)
+Router.post("/deleteproduct",petProduct.deleteProduct)
 
 //cart
 

@@ -78,11 +78,38 @@ const findById = (req, res) => {
     });
 };
 
+const viewAll = (req, res) => {
+  petProductSchema
+    .find()
+    .then((result) => {
+      res.json({
+        data: result,
+        msg: "Product Got Successfully",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const deleteProduct = (req, res) => {
+  petProductSchema.findByIdAndDelete({ _id: req.body.id }).then((result) => {
+    res.json({
+      data: result,
+      msg:"product deleted"
+    });
+  })
+  .catch((err)=>{
+console.log(err);
+
+  })
+};
 
 module.exports = {
   upload,
   addproduct,
   findByCategory,
   findById,
+  viewAll,
+  deleteProduct
 };
-
